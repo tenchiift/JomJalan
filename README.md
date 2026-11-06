@@ -1,25 +1,29 @@
 # JomJalan
 
-A beginner Electron travel planner for the CSC2923 OOP final project.
+An Electron travel planner for the CSC2923 Object Oriented Programming final assignment.
 
-## Files used
+## Files
 
-- `main.js` opens the Electron window.
-- `index.html` contains both application pages.
-- `styles.css` contains the basic website design.
-- `renderer.js` contains all JavaScript functions.
+- `main.js` creates the Electron window and syncs zoom level.
+- `index.html` Explore page: search a destination, see the live forecast, pick a package and itinerary.
+- `calculator.html` Budget calculator with optional add-ons and cost breakdown in MYR.
+- `plans.html` My Travel Plans: save, rename and delete plans (Local Storage).
+- `renderer.js` all application logic.
+- `styles.css` shared styling for all pages.
 
-## Run the application
+## Run
 
 ```bash
-npm install
+npm ci
 npm start
 ```
 
-## Functions
+Requires Node.js and npm. No other setup is needed; saved plans persist in Local Storage.
 
-1. Select South Korea, Japan or Switzerland, then choose a place and future travel dates.
-2. Get a daily forecast for the complete trip date range from Open-Meteo.
-3. Display three popular travel packages for the selected country.
-4. Show an activity suggestion for each package based on the forecast.
-5. Calculate a MYR trip budget and save, view, edit or delete travel plans using Local Storage.
+## Features
+
+1. Destinations: South Korea, Japan or Switzerland, with a selected place and travel dates.
+2. Live daily forecast from the Open-Meteo Forecast API for the selected date range.
+3. Travel packages per destination, each with a day-by-day itinerary.
+4. Weather-based activity suggestion per day (indoor/outdoor), driven by the forecast.
+5. Budget calculation in MYR with optional add-ons, plus save, view, rename and delete travel plans.
