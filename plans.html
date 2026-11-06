@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>JomJalan - My Travel Plans</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <div class="navbar">
+    <div class="nav-brand">
+      <h2>✈️ JomJalan Travel Planner</h2>
+    </div>
+    <div class="nav-links">
+      <a href="index.html">Explore Destination</a> |
+      <a href="calculator.html">Budget Calculator</a> |
+      <a href="plans.html" class="active">My Travel Plans</a>
+      <span class="zoom-box">
+        <button type="button" onclick="adjustZoom(-0.1)">-</button>
+        <span id="zoomLevelDisplay" onclick="resetZoom()">100%</span>
+        <button type="button" onclick="adjustZoom(0.1)">+</button>
+      </span>
+    </div>
+  </div>
+
+  <div class="container">
+    <h1>My Saved Travel Plans</h1>
+    
+
+    <!-- Plans List Container -->
+    <div id="plansList">
+      <p><i>Loading saved travel plans...</i></p>
+    </div>
+  </div>
+
+  <script src="renderer.js"></script>
+</body>
+</html>

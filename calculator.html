@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>JomJalan - Budget Calculator</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <div class="navbar">
+    <div class="nav-brand">
+      <h2>✈️ JomJalan Travel Planner</h2>
+    </div>
+    <div class="nav-links">
+      <a href="index.html">Explore Destination</a> |
+      <a href="calculator.html" class="active">Budget Calculator</a> |
+      <a href="plans.html">My Travel Plans</a>
+      <span class="zoom-box">
+        <button type="button" onclick="adjustZoom(-0.1)">-</button>
+        <span id="zoomLevelDisplay" onclick="resetZoom()">100%</span>
+        <button type="button" onclick="adjustZoom(0.1)">+</button>
+      </span>
+    </div>
+  </div>
+
+  <div class="container">
+    <h1>Trip Budget Calculator</h1>
+    
+
+    <!-- Destination Banner -->
+    <fieldset class="banner-box">
+      <legend><b>Destination & Package</b></legend>
+      <div id="selectedDestinationBanner">
+        <!-- Populated by renderer.js -->
+      </div>
+    </fieldset>
+
+    <br>
+
+    <!-- Step 1 Form -->
+    <fieldset class="panel">
+      <legend><b>Trip Details</b></legend>
+      <table class="form-table">
+        <tr>
+          <td><label for="planName"><b>Plan Name:</b></label></td>
+          <td colspan="3"><input id="planName" type="text" style="width: 90%;" placeholder="e.g. My Holiday Trip"></td>
+        </tr>
+        <tr>
+          <td><label for="arrival"><b>Departure Date:</b></label></td>
+          <td><input id="arrival" type="date"></td>
+          <td><label for="departure"><b>Return Date:</b></label></td>
+          <td><input id="departure" type="date"></td>
+        </tr>
+        <tr>
+          <td><label for="travellers"><b>No. of Travellers:</b></label></td>
+          <td><input id="travellers" type="number" min="1" value="1"></td>
+          <td><label for="rooms"><b>No. of Rooms:</b></label></td>
+          <td><input id="rooms" type="number" min="1" value="1"></td>
+        </tr>
+      </table>
+    </fieldset>
+
+    <br>
+
+    <!-- Step 2 Add-ons -->
+    <fieldset class="panel">
+      <legend><b>Optional Add-Ons</b></legend>
+      
+      <div class="options-wrapper">
+        <div class="option-section">
+          <h4>✈️ Flight & Transport</h4>
+          <div id="transportOptions"></div>
+        </div>
+
+        <div class="option-section">
+          <h4>🏨 Accommodation Upgrade</h4>
+          <div id="hotelOptions"></div>
+        </div>
+
+        <div class="option-section">
+          <h4>🍱 Daily Meals</h4>
+          <div id="foodOptions"></div>
+        </div>
+
+        <div class="option-section">
+          <h4>🎟️ Excursions & Passes</h4>
+          <div id="activitiesOptions"></div>
+        </div>
+      </div>
+    </fieldset>
+
+    <br>
+
+    <!-- Step 3 Budget Summary -->
+    <fieldset class="panel">
+      <legend><b>Budget Summary</b></legend>
+      <div id="budgetResult">
+        <!-- Populated by calculateBudget() -->
+      </div>
+
+      <div class="action-buttons">
+        <button id="calculateButton" type="button">Recalculate Budget</button>
+        <button id="saveButton" type="button">Save Travel Plan</button>
+      </div>
+      <div id="saveMessage" class="status-msg"></div>
+    </fieldset>
+
+  </div>
+
+  <script src="renderer.js"></script>
+</body>
+</html>

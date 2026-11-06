@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>JomJalan Travel Planner - Explore</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <div class="navbar">
+    <div class="nav-brand">
+      <h2>✈️ JomJalan Travel Planner</h2>
+    </div>
+    <div class="nav-links">
+      <a href="index.html" class="active">Explore Destination</a> |
+      <a href="calculator.html">Budget Calculator</a> |
+      <a href="plans.html">My Travel Plans</a>
+      <span class="zoom-box">
+        <button type="button" onclick="adjustZoom(-0.1)">-</button>
+        <span id="zoomLevelDisplay" onclick="resetZoom()">100%</span>
+        <button type="button" onclick="adjustZoom(0.1)">+</button>
+      </span>
+    </div>
+  </div>
+
+  <div class="container">
+    <h1>Explore Destination & Weather</h1>
+    
+
+    <!-- Search Section -->
+    <fieldset class="search-box">
+      <legend><b>Search Travel Destination</b></legend>
+      <table class="form-table">
+        <tr>
+          <td><label for="country"><b>Country:</b></label></td>
+          <td>
+            <select id="country">
+              <option value="KR">South Korea</option>
+              <option value="JP">Japan</option>
+              <option value="CH">Switzerland</option>
+            </select>
+          </td>
+          <td><label for="place"><b>Place / City:</b></label></td>
+          <td>
+            <select id="place"></select>
+          </td>
+          <td><label for="weatherStart"><b>Departure Date:</b></label></td>
+          <td>
+            <input id="weatherStart" type="date">
+          </td>
+          <td>
+            <button id="exploreButton" type="button">Search</button>
+            <button id="resetExploreButton" type="button">Reset</button>
+          </td>
+        </tr>
+      </table>
+      <div id="searchMessage" class="status-msg"></div>
+    </fieldset>
+
+    <hr>
+
+    <!-- Main Results Section (Bento Section for scroll) -->
+    <div class="bento-section">
+      
+
+      <!-- Row 1: Packages & Selection -->
+      <div class="results-grid">
+        <div class="panel">
+          <h3>Available Packages</h3>
+          
+          <div id="packageInfo">
+            <p><i>Please click Search above to view packages.</i></p>
+          </div>
+        </div>
+
+        <div class="panel">
+          <h3>Selected Package</h3>
+          <div id="selectedPackageInfo">
+            <p><i>No package selected yet.</i></p>
+          </div>
+        </div>
+
+        <div class="panel">
+          <h3>Location Information</h3>
+          <div id="travelInfo">
+            <p><i>Location details will appear here.</i></p>
+          </div>
+        </div>
+      </div>
+
+      <br>
+
+      <!-- Row 2: Weather & Suggestions -->
+      <div class="panel">
+        <h3>Weather Forecast</h3>
+        <div id="weatherInfo">
+          <p><i>Weather forecast will appear after searching.</i></p>
+        </div>
+      </div>
+
+      <br>
+
+      <div class="panel">
+        <h3>Daily Itinerary</h3>
+        <div id="suggestionInfo">
+          <p><i>Activity recommendations based on weather will appear here.</i></p>
+        </div>
+      </div>
+
+      <br>
+
+      <!-- CTA to Budget Calculator -->
+      <div id="proceedBudgetCtaContainer" style="text-align: center; margin: 20px 0;">
+      </div>
+
+    </div>
+  </div>
+
+  <script src="renderer.js"></script>
+</body>
+</html>
