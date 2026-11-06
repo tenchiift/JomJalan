@@ -1,8 +1,6 @@
-// All app logic is in one JavaScript file so it is easier to learn and explain.
+// all app logic lives in this one file
 
-// ==========================================================================
-// Zoom Management (Synchronized across all pages via localStorage & Electron)
-// ==========================================================================
+// zoom level shared across pages
 const zoomStorageKey = 'jomjalanZoomFactor';
 let electronWebFrame = null;
 let electronIpcRenderer = null;
@@ -59,7 +57,7 @@ function resetZoom() {
   applyZoom(1.0);
 }
 
-// Listen for updates from main process if native zoom changed
+// sync zoom if the main process changed it
 if (electronIpcRenderer) {
   electronIpcRenderer.on('zoom-factor-updated', (event, factor) => {
     localStorage.setItem(zoomStorageKey, factor.toString());
@@ -67,7 +65,7 @@ if (electronIpcRenderer) {
   });
 }
 
-// Keyboard shortcuts for zoom: Ctrl/Cmd + / - / 0
+// keyboard shortcuts: ctrl/cmd + / - / 0
 window.addEventListener('keydown', (e) => {
   if (e.ctrlKey || e.metaKey) {
     if (e.key === '=' || e.key === '+') {
@@ -83,7 +81,7 @@ window.addEventListener('keydown', (e) => {
   }
 });
 
-// Initialize zoom on page load
+// apply saved zoom on page load
 applyZoom(getStoredZoom(), false);
 
 const countries = {
@@ -259,7 +257,7 @@ let currentSuggestion = null;
 let currentBudget = null;
 let currentSelectedPackage = null;
 
-// Preset extra expense options in English
+// add-on expense options
 const budgetOptionsData = {
   transport: [
     { id: 't_none', label: 'None / Self-Arranged', desc: 'Arrange own flight or transport tickets', cost: 0, icon: '🚶' },
@@ -283,7 +281,7 @@ const budgetOptionsData = {
   ],
 };
 
-// Store active selections for each category
+// remember what the user picked
 const activeSelections = {
   transport: 't_flight_eco',
   hotel: 'h_included',
@@ -325,7 +323,7 @@ function selectBudgetOption(category, optionId) {
   };
 
   renderBudgetCategoryOptions(category, containerMap[category]);
-  // Auto-recalculate if user already has valid dates
+  // recalculate if the dates are already valid
   const arrival = document.getElementById('arrival');
   const departure = document.getElementById('departure');
   if (arrival && departure && arrival.value && departure.value) {
@@ -340,7 +338,7 @@ function initBudgetOptionCards() {
   renderBudgetCategoryOptions('activities', 'activitiesOptions');
 }
 
-// Load previously searched destination so it stays available across separate HTML pages
+// keep the last searched destination between pages
 try {
   const savedSearch = JSON.parse(localStorage.getItem(currentSearchKey));
   if (savedSearch) {
@@ -766,7 +764,7 @@ function calculateBudget() {
   const travellers = Number(document.getElementById('travellers').value);
   const rooms = Number(document.getElementById('rooms').value);
 
-  // Ambil kos extras daripada pilihan kad/custom
+  // read the extra costs from the picked options
   const transportCost = getCategoryCost('transport');
   const activitiesCost = getCategoryCost('activities');
   const foodCost = getCategoryCost('food');
@@ -781,10 +779,7 @@ function calculateBudget() {
   const nights = Math.round((departure - arrival) / 86400000);
   const days = nights + 1;
 
-  // Calculation formula:
-  // Base Package Cost = Number of Travellers * Package Base Price
-  // Extras Cost = (Travellers * (Transport/Flight + Activities + (Days * Food))) + (Nights * Rooms * Hotel)
-  // Grand Total = Base Package Cost + Extras Cost
+  // formula: package price x travellers, plus extras (transport, activities, food per day, hotel per room per night)
   const basePrice = currentSelectedPackage ? (currentSelectedPackage.basePrice || 0) : 0;
   const packageBaseCost = travellers * basePrice;
 
@@ -1032,7 +1027,7 @@ function deletePlan(id) {
   }
 }
 
-// Attach listeners based on which HTML page is currently open
+// attach listeners for the page that is open
 const exploreBtn = document.getElementById('exploreButton');
 if (exploreBtn) exploreBtn.addEventListener('click', searchDestination);
 
@@ -1156,11 +1151,11 @@ if (document.getElementById('plansList')) {
   displayPlans();
 }
 
-// Inisialisasi kad pilihan bajet jika berada di laman calculator
+// set up the budget add-on cards on the calculator page
 if (document.getElementById('transportOptions')) {
   initBudgetOptionCards();
 
-  // Tambah listener untuk input bilangan pelancong dan bilik
+  // listeners for travellers and rooms inputs
   ['travellers', 'rooms'].forEach(id => {
     const el = document.getElementById(id);
     if (el) {
@@ -1174,7 +1169,7 @@ if (document.getElementById('transportOptions')) {
     }
   });
 
-  // Listener untuk perubahan tarikh
+  // listener for date changes
   ['arrival', 'departure'].forEach(id => {
     const el = document.getElementById(id);
     if (el) {
@@ -1184,7 +1179,7 @@ if (document.getElementById('transportOptions')) {
     }
   });
 
-  // Kira bajet secara automatik sewaktu mula-mula buka laman kalkulator jika ada tarikh
+  // auto calculate when the calculator page opens with dates
   const initArr = document.getElementById('arrival');
   const initDep = document.getElementById('departure');
   if (initArr && initDep && initArr.value && initDep.value) {

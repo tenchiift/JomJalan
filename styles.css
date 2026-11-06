@@ -1,7 +1,4 @@
-/* ========================================================
-   JomJalan Stylesheet - Student Final Project
-   CSC2923 Object-Oriented Programming
-   ======================================================== */
+/* jomjalan stylesheet, css2923 final project */
 
 * {
   box-sizing: border-box;
@@ -17,7 +14,7 @@ body {
   padding: 0;
 }
 
-/* Container */
+/* main container */
 .container {
   width: 92%;
   max-width: 1050px;
@@ -28,7 +25,7 @@ body {
   border-radius: 4px;
 }
 
-/* Navigation Bar */
+/* nav bar */
 .navbar {
   background-color: #2c3e50;
   color: #ffffff;
@@ -79,7 +76,7 @@ body {
   padding: 0 4px;
 }
 
-/* Headings */
+/* headings */
 h1 {
   font-size: 22px;
   color: #2c3e50;
@@ -116,7 +113,7 @@ hr {
   margin: 20px 0;
 }
 
-/* Fieldsets & Panels */
+/* fieldsets and panels */
 fieldset {
   border: 1px solid #bdc3c7;
   border-radius: 4px;
@@ -139,7 +136,7 @@ legend {
   margin-bottom: 15px;
 }
 
-/* Tables & Forms */
+/* tables and forms */
 .form-table {
   width: 100%;
   border-collapse: collapse;
@@ -189,7 +186,7 @@ button:active {
   font-size: 13px;
 }
 
-/* Results Grid */
+/* results grid */
 .results-grid {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
@@ -248,7 +245,7 @@ button:active {
   font-size: 11px;
 }
 
-/* Selected Package Box */
+/* selected package box */
 .selected-pkg-card {
   background: #ffffff;
   border: 1px solid #bdc3c7;
@@ -270,7 +267,7 @@ button:active {
   font-size: 11px;
 }
 
-/* Weather Grid */
+/* weather grid */
 .weather-forecast-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
@@ -322,7 +319,7 @@ button:active {
   color: #2980b9;
 }
 
-/* Adaptive Itinerary */
+/* day by day itinerary */
 .itinerary-timeline-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
@@ -395,7 +392,7 @@ button:active {
   margin-top: 4px;
 }
 
-/* Calculator Page Options */
+/* add-on options */
 .options-wrapper {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -415,7 +412,7 @@ button:active {
   border-radius: 4px;
 }
 
-/* Budget Receipt / Summary */
+/* budget summary */
 .receipt-split-grid {
   display: grid;
   grid-template-columns: 2fr 1fr;
@@ -505,7 +502,7 @@ button:active {
   background-color: #27ae60;
 }
 
-/* My Travel Plans Grid */
+/* plans grid */
 .plans-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -518,7 +515,7 @@ button:active {
   }
 }
 
-/* Budget Option Cards Styling */
+/* add-on option cards */
 .option-card {
   display: block;
   border: 1px solid #bdc3c7;
@@ -587,7 +584,7 @@ button:active {
   font-weight: bold;
 }
 
-/* Tour Card in My Travel Plans */
+/* plan card */
 .tour-card {
   background: #ffffff;
   border: 1px solid #bdc3c7;

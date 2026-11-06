@@ -9,7 +9,7 @@ function createWindow() {
     webPreferences: { nodeIntegration: true, contextIsolation: false },
   });
 
-  // Listen for renderer zoom updates so main process syncs it immediately
+  // keep the main window zoom in sync with the renderer
   ipcMain.on('set-zoom-factor', (event, factor) => {
     if (typeof factor === 'number' && factor >= 0.5 && factor <= 2.0) {
       sharedZoomFactor = factor;
@@ -17,7 +17,7 @@ function createWindow() {
     }
   });
 
-  // Track native zoom shortcut changes (Cmd/Ctrl + and -)
+  // track zoom shortcut changes from the app menu
   window.webContents.on('zoom-changed', (event, zoomDirection) => {
     let current = window.webContents.getZoomFactor();
     if (zoomDirection === 'in') current = Math.min(Number((current + 0.1).toFixed(2)), 2.0);
@@ -27,7 +27,7 @@ function createWindow() {
     window.webContents.send('zoom-factor-updated', sharedZoomFactor);
   });
 
-  // Reapply the exact same zoom level every time any page finishes loading
+  // reapply the same zoom on every page load
   window.webContents.on('did-finish-load', () => {
     window.webContents.setZoomFactor(sharedZoomFactor);
   });
